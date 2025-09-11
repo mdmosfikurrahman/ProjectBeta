@@ -6,7 +6,7 @@ using ProjectBeta.Application.Services;
 namespace ProjectBeta.WebAPI.Controllers;
 
 [ApiController]
-// [Authorize]
+[Authorize]
 [ApiVersion("1.0")]
 [ApiVersion("2.0")]
 [Route("api/v{version:apiVersion}/fare-rules")]

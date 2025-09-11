@@ -27,8 +27,10 @@ public static class WebApplicationExtensions
 
         app.UseHttpsRedirection();
 
-        app.MapControllers();
+        app.UseAuthentication();
+        app.UseAuthorization();
 
+        app.MapControllers();
         return app;
     }
 }

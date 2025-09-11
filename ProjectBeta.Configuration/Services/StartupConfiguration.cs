@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using ProjectBeta.Application.Services;
+using ProjectBeta.Configuration.Security;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace ProjectBeta.Configuration.Services;
@@ -14,7 +16,10 @@ public static class StartupConfiguration
 {
     public static IServiceCollection AddStartupServices(this IServiceCollection services, IConfiguration config)
     {
-        services.AddControllers();
+        services.AddControllers(o =>
+        {
+            o.Filters.Add(new AuthorizeFilter());
+        });
 
         services.AddApiVersioning(options =>
         {
@@ -37,6 +42,10 @@ public static class StartupConfiguration
         services.AddSingleton<IFareRuleService, FareRuleService>();
         services.AddSingleton<IRouteService, RouteService>();
 
+        services.AddAlphaJwtAuthentication(config, requireHttpsMetadata: false);
+
+        services.AddAuthorization();
+
         return services;
     }
 
@@ -57,6 +66,8 @@ public static class StartupConfiguration
                     }
                 );
             }
+
+            options.AddBearerSecurity();
         }
     }
 }

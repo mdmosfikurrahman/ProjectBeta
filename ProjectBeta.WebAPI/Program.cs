@@ -1,4 +1,3 @@
-using ProjectBeta.Configuration;
 using ProjectBeta.Configuration.Services;
 
 var builder = WebApplication.CreateBuilder(args);
