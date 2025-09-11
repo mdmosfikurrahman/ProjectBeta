@@ -9,8 +9,8 @@ namespace ProjectBeta.WebAPI.Controllers;
 // [Authorize]
 [ApiVersion("1.0")]
 [ApiVersion("2.0")]
-[Route("api/v{version:apiVersion}/airlines")]
-public class AirlinesController(IAirlineService service) : ControllerBase
+[Route("api/v{version:apiVersion}/fare-rules")]
+public class FareRulesController(IFareRuleService service) : ControllerBase
 {
     [HttpGet]
     [MapToApiVersion("1.0")]
@@ -22,6 +22,6 @@ public class AirlinesController(IAirlineService service) : ControllerBase
 
     [HttpPost]
     [MapToApiVersion("2.0")]
-    public async Task<IActionResult> Create([FromBody] AirlineRequest request) =>
+    public async Task<IActionResult> Create([FromBody] FareRuleRequest request) =>
         Ok(await service.CreateAsync(request));
 }

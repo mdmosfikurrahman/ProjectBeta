@@ -9,8 +9,8 @@ namespace ProjectBeta.WebAPI.Controllers;
 // [Authorize]
 [ApiVersion("1.0")]
 [ApiVersion("2.0")]
-[Route("api/v{version:apiVersion}/airports")]
-public class AirportsController(IAirportService service) : ControllerBase
+[Route("api/v{version:apiVersion}/routes")]
+public class RoutesController(IRouteService service) : ControllerBase
 {
     [HttpGet]
     [MapToApiVersion("1.0")]
@@ -22,6 +22,6 @@ public class AirportsController(IAirportService service) : ControllerBase
 
     [HttpPost]
     [MapToApiVersion("2.0")]
-    public async Task<IActionResult> Create([FromBody] AirportRequest request) =>
+    public async Task<IActionResult> Create([FromBody] RouteRequest request) =>
         Ok(await service.CreateAsync(request));
 }
