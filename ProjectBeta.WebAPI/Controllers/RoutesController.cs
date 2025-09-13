@@ -9,7 +9,7 @@ namespace ProjectBeta.WebAPI.Controllers;
 [Authorize]
 [ApiVersion("1.0")]
 [ApiVersion("2.0")]
-[Route("v{version:apiVersion}/routes")]
+[Route("api/v{version:apiVersion}/routes")]
 public class RoutesController(IRouteService service) : ControllerBase
 {
     [HttpGet]
