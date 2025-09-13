@@ -16,9 +16,10 @@ public static class StartupConfiguration
 {
     public static IServiceCollection AddStartupServices(this IServiceCollection services, IConfiguration config)
     {
-        services.AddControllers(o =>
+        services.AddControllers(options =>
         {
-            o.Filters.Add(new AuthorizeFilter());
+            options.Filters.Add(new AuthorizeFilter());
+            options.Conventions.Insert(0, new RoutePrefixConvention(new RouteAttribute("beta/api")));
         });
 
         services.AddApiVersioning(options =>

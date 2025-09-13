@@ -9,7 +9,7 @@ namespace ProjectBeta.WebAPI.Controllers;
 [Authorize]
 [ApiVersion("1.0")]
 [ApiVersion("2.0")]
-[Route("api/v{version:apiVersion}/fare-rules")]
+[Route("v{version:apiVersion}/fare-rules")]
 public class FareRulesController(IFareRuleService service) : ControllerBase
 {
     [HttpGet]
